@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=big5">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/ext-all.css" />
+        <script type="text/javascript" src="../../ext-all.js"></script>
+        <script type="text/javascript" src="localXHR.js"></script>
+        <title>09.menu</title>
+        <script type="text/javascript">
+Ext.onReady(function(){
+    // 建立工具列
+    var tb = new Ext.Toolbar();
+    tb.render('toolbar');
+
+    // 為工具列加入4個按鈕
+    tb.add({
+        text: '新增',
+        handler: function() {
+            Ext.Msg.alert('提示', '新增');
+        }
+    },{
+        text: '修改',
+        handler: function() {
+            Ext.Msg.alert('提示', '修改');
+        }
+    },{
+        text: '移除',
+        handler: function() {
+            Ext.Msg.alert('提示', '移除');
+        }
+    },{
+        text: '顯示',
+        handler: function() {
+            Ext.Msg.alert('提示', '顯示');
+        }
+    });
+    tb.doLayout();
+
+});
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript" src="../../examples/shared/examples.js"></script>
+        <div id="toolbar"></div>
+    </body>
+</html>

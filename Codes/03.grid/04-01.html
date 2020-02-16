@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=big5">
+        <title>03.grid</title>
+        <link rel="stylesheet" type="text/css" href="../../resources/css/ext-all.css" />
+        <script type="text/javascript" src="../../ext-all.js"></script>
+        <script type="text/javascript">
+Ext.onReady(function(){
+
+    function renderSex(value) {
+        if (value == 'male') {
+            return "<span style='color:red;font-weight:bold;'>紅男</span><img src='user_male.png' />";
+        } else {
+            return "<span style='color:green;font-weight:bold;'>綠女</span><img src='user_female.png' />";
+        }
+    }
+
+    function renderDescn(value, cellmeta, record, rowIndex, columnIndex, store) {
+        var str = "<input type='button' value='檢視詳細訊息' onclick='alert(\"" +
+            "這個單元格的值是：" + value + "\\n" +
+            "這個單元格的組態是：{cellId:" + cellmeta.cellId + ",id:" + cellmeta.id + ",css:" + cellmeta.css + "}\\n" +
+            "這個單元格對應行的record是：" + record + "，一行的資料都在裏面\\n" +
+            "這是第" + rowIndex + "行\\n" +
+            "這是第" + columnIndex + "列\\n" +
+            "這個表格對應的Ext.data.Store在這裡：" + store + "，隨便用吧。" +
+            "\")'>";
+        return str;
+    }
+
+    var columns = [
+        {header:'編號',dataIndex:'id'},
+        {header:'性別',dataIndex:'sex',renderer:renderSex},
+        {header:'名稱',dataIndex:'name'},
+        {header:'描述',dataIndex:'descn',renderer:renderDescn}
+    ];
+
+    var data = [
+        ['1','male','name1','descn1'],
+        ['2','female','name2','descn2'],
+        ['3','male','name3','descn3'],
+        ['4','female','name4','descn4'],
+        ['5','male','name5','descn5']
+    ];
+
+    var store = new Ext.data.ArrayStore({
+		data: data,
+		fields:k [
+            {name: 'id'},
+            {name: 'sex'},
+            {name: 'name'},
+            {name: 'descn'}
+        ]
+    });
+    store.load();
+
+    var grid = new Ext.grid.GridPanel({
+        autoHeight: true,
+        renderTo: 'grid',
+        store: store,
+        columns: columns
+    });
+
+});
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript" src="../../examples/shared/examples.js"></script>
+        <div id="grid"></div>
+    </body>
+</html>

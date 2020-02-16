@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>04.form</title>
+        <link rel="stylesheet" type="text/css" href="../../resources/css/ext-all.css" />
+        <script type="text/javascript" src="../../ext-all.js"></script>
+        <script type="text/javascript">
+Ext.onReady(function(){
+
+    // HtmlEditor需要這個
+    Ext.QuickTips.init();
+
+    var form = new Ext.form.FormPanel({
+        buttonAlign: 'center',
+        width: 600,
+        title: 'form',
+        frame: true,
+		fieldDefaults: {
+			labelAlign: 'right',
+			labelWidth: 70
+		},
+        items: [{
+			xtype: 'container',
+            layout: 'column',
+            items: [{
+                columnWidth:.7,
+                xtype:'fieldset',
+                checkboxToggle:true,
+                title: '單純輸入',
+                autoHeight:true,
+                defaults: {width: 300},
+                defaultType: 'textfield',
+                items: [{
+                    fieldLabel: '文字',
+                    name: 'text'
+                },{
+                    xtype: 'numberfield',
+                    fieldLabel: '數字',
+                    name: 'number'
+                },{
+                    xtype:"combo",
+                    fieldLabel: '選取',
+                    name: 'combo',
+                    store: new Ext.data.SimpleStore({
+                        fields: ['value', 'text'],
+                        data: [
+                            ['value1', 'text1'],
+                            ['value2', 'text2']
+                        ]
+                    }),
+                    displayField: 'text',
+                    valueField: 'value',
+                    mode: 'local',
+                    emptyText:'請選取'
+                },{
+                    xtype: 'datefield',
+                    fieldLabel: '日期',
+                    name: 'date'
+                },{
+                    xtype: 'timefield',
+                    fieldLabel: '時間',
+                    name: 'time'
+                },{
+                    xtype: 'textarea',
+                    fieldLabel: '多行',
+                    name: 'textarea'
+                },{
+                    xtype: 'hidden',
+                    name: 'hidden'
+                }]
+            },{
+				xtype: 'container',
+                columnWidth:.3,
+                layout:'form',
+                items:[{
+                    xtype:'fieldset',
+                    checkboxToggle:true,
+                    title: '多選',
+                    autoHeight:true,
+                    defaultType: 'checkbox',
+                    hideLabels: true,
+                    style: 'margin-left:10px;',
+                    bodyStyle: 'margin-left:20px;',
+                    items: [{
+                        boxLabel: '首先要穿暖',
+                        name: 'check',
+                        value: '1',
+                        checked: true,
+                        width: 'auto'
+                    },{
+                        boxLabel: '然後要吃飽',
+                        name: 'check',
+                        value: '2',
+                        checked: true,
+                        width: 'auto'
+                    },{
+                        boxLabel: '房子遮風避雨',
+                        name: 'check',
+                        value: '3',
+                        width: 'auto'
+                    },{
+                        boxLabel: '行路方便',
+                        name: 'check',
+                        value: '4',
+                        width: 'auto'
+                    }]
+                },{
+                    xtype:'fieldset',
+                    checkboxToggle:true,
+                    title: '單選',
+                    autoHeight:true,
+                    defaultType: 'radio',
+                    hideLabels: true,
+                    style: 'margin-left:10px;',
+                    bodyStyle: 'margin-left:20px;',
+                    items: [{
+                        boxLabel: '渴望自由',
+                        name: 'rad',
+                        value: '1',
+                        checked: true,
+                        width: 'auto'
+                    },{
+                        boxLabel: '祈求愛情',
+                        name: 'rad',
+                        value: '2',
+                        width: 'auto'
+                    }]
+                }]
+            }]
+        },{
+			xtype: 'container',
+            layout: 'form',
+            items: [{
+				labelAlign: 'top',
+                xtype: 'htmleditor',
+                fieldLabel: '線上編輯器',
+                id: 'editor',
+                anchor: '98%',
+                height: 200
+            }]
+        }],
+        buttons: [{
+            text: '儲存'
+        },{
+            text: '讀取'
+        },{
+            text: '取消'
+        }]
+    });
+
+    form.render("form");
+
+
+});
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript" src="../../examples/shared/examples.js"></script>
+        <div id="form" style="margin:20px;"></div>
+    </body>
+</html>

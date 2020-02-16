@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=big5">
+        <title>07.window</title>
+        <link rel="stylesheet" type="text/css" href="../../resources/css/ext-all.css" />
+        <script type="text/javascript" src="../../ext-all.js"></script>
+        <script type="text/javascript">
+Ext.onReady(function(){
+
+    Ext.MessageBox.alert('標題', '內容', function(btn) {
+        alert('你剛剛點擊了 ' + btn);
+    });
+
+    Ext.MessageBox.confirm('選取框', '你到底是選取yes還是no？', function(btn) {
+        alert('你剛剛點擊了 ' + btn);
+    });
+
+    Ext.MessageBox.prompt('輸入框', '隨便輸入一些東西', function(btn, text) {
+        alert('你剛剛點擊了 ' + btn + '，剛剛輸入了 ' + text);
+    });
+
+    Ext.MessageBox.show({
+        title: '多行輸入框',
+        msg: '你可以輸入好幾行',
+        width:300,
+        buttons: Ext.MessageBox.OKCANCEL,
+        multiline: true,
+        fn: function(btn, text) {
+            alert('你剛剛點擊了 ' + btn + '，剛剛輸入了 ' + text);
+        }
+    });
+
+    Ext.MessageBox.show({
+        title:'隨便按個按鈕',
+        msg: '從三個按鈕裡隨便選取一個',
+        buttons: Ext.MessageBox.YESNOCANCEL,
+        fn: function(btn) {
+            alert('你剛剛點擊了 ' + btn);
+        }
+    });
+
+    Ext.MessageBox.show({
+        title: '請等待',
+        msg: '讀取資料中',
+        width:240,
+        progress:true,
+        closable:false
+    });
+    var f = function(v){
+        return function(){
+            if(v == 11){
+                Ext.MessageBox.hide();
+            }else{
+                Ext.MessageBox.updateProgress(v/10, '正在讀取第 ' + v + ' 個，一共10個。');
+            }
+       };
+    };
+    for(var i = 1; i < 12; i++){
+       setTimeout(f(i), i*1000);
+    }
+/*
+    Ext.MessageBox.show({
+        title:'隨便按個按鈕',
+        msg: '從三個按鈕裡隨便選取一個',
+        buttons: Ext.MessageBox.YESNOCANCEL,
+        fn: function(btn) {
+            alert('你剛剛點擊了 ' + btn);
+        },
+        animEl: 'dialog'
+    });
+*/
+});
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript" src="../../examples/shared/examples.js"></script>
+        <div id="dialog"></div>
+    </body>
+</html>
